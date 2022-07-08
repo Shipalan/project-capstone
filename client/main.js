@@ -4,7 +4,7 @@ const date = new Date();
 
 function newLog(body) {
   axios.post("/api/log", body)
-    .then(createLog(body));
+    .then(res.status(200).send(body));
 }
 
 function inputFormHandler(event) {
