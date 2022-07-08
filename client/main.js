@@ -3,8 +3,10 @@ let milesInput = document.getElementById("milesInput");
 const date = new Date();
 
 function newLog(body) {
-  axios.post("/api/log" (res,req), body)
-    .then(res.status(200).send(body));
+  axios.post("/api/log", body)
+    .then(res => {
+  res.status(200).send(body)})
+    
 }
 
 function inputFormHandler(event) {
