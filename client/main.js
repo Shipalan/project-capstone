@@ -5,7 +5,7 @@ const date = new Date();
 function newLog(body) {
   axios.post("/api/log", body)
     .then(res => {
-  res.status(200).send(body)})
+  res.status(200)})
     
 }
 
