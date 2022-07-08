@@ -19,9 +19,9 @@ module.exports = {
     console.log(date)
     console.log(miles)
     
-    // sequelize.query(`
-    // INSERT INTO user_log (date, miles)
-    // VALUES ('${date}', '${miles}')
-    // `);
+    sequelize.query(`
+    INSERT INTO user_log (date, miles)
+    VALUES ('${date}', '${miles}')
+    `);
   },
 };

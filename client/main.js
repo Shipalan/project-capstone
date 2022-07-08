@@ -3,8 +3,7 @@ let milesInput = document.getElementById("milesInput");
 const date = new Date();
 
 function newLog(body) {
-  axios
-    .post("/api/log", body)
+  axios.post("/api/log", body)
     .then(createLog(body));
 }
 
