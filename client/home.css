@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+   
+}
+
+body {
+    background-color: rgb(47, 45, 45);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 30px;
+}
+
+header h1 {
+    color: #ffff;
+    font-size: 55px;
+    font-family: montserrat
+;
+}
+
+header nav {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.links {
+    color: #ffff;
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    padding-top: 5%;
+    flex-direction: column;
+
+}
+
+form h2 {
+    color: #ffff;
+    margin: 0 0 10px 0;
+    line-height: 1;
+}
+
+#mileageSubmit {
+    background-color: black;
+    color: #ffff;
+    border-radius: 10px;
+    padding: 0px 10px;
+    width: 150px;
+    margin-top: 10px;
+}
+
+#milesInput{
+    text-align: center;
+}
+#formDiv {
+    background-color: #690a0c;
+    display: flex;
+    justify-content: center;
+    width: 30vw;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 60px;
+}
+
+#milesInputForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+#dateTime {
+    width: 30vw;
+    border-radius: 15px;
+    background-color: #C5C5C5;
+}
+
+#columnNames{
+    display: flex;
+    justify-content: space-around;
+    border-width: 5px;
+    border-style: solid;
+}
+
+#list {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+    
+}
+
+#list ul {
+    margin: 0;
+    padding: 0;
+}
+
