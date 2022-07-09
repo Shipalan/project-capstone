@@ -3,10 +3,10 @@ let milesInput = document.getElementById("milesInput");
 const date = new Date();
 
 function newLog(body) {
+  console.log('new log', body);
   axios.post("/api/log", body).then((res) => {
-    console.log("this is body", body);
+    console.log("this is body", res.data);
   });
-  console.log(body);
 }
 
 function inputFormHandler(event) {
@@ -19,8 +19,8 @@ function inputFormHandler(event) {
   // console.log(currentDate);
 
   let body = {
-    date: currentDate,
-    miles: `${milesInput.value} miles`,
+    'date': currentDate,
+    'miles': `${milesInput.value} miles`,
   };
 
   newLog(body);
