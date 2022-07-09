@@ -2,15 +2,16 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-// const  SERVER_PORT  = process.env.PORT || 5432;
 
-const { createLog } = require("./controller.js");
+
+const { createLog, recentLogs } = require("./controller.js");
 
 const app = express();
-app.use(express.json())
+app.use(express.json());
 app.use(cors());
 
 app.post("/api/log", createLog);
+app.get("/api/recentLogs", recentLogs);
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/home.html"));
