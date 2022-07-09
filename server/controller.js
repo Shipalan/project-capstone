@@ -14,14 +14,15 @@ const sequelize = new Sequelize(DATABASE_URL, {
 
 module.exports = {
   createLog: (req, res) => {
-    const { date, miles } = body;
+    console.log('module exports', req.body)
+    const { date, miles } = req.body
 
     console.log(date)
     console.log(miles)
     
-    sequelize.query(`
-    INSERT INTO user_log (date, miles)
-    VALUES ('${date}', '${miles}')
-    `);
+    // sequelize.query(`
+    // INSERT INTO user_log (date, miles)
+    // VALUES ('${date}', '${miles}')
+    // `);
   },
 };
