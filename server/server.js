@@ -3,7 +3,6 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 
-
 const { createLog, recentLogs } = require("./controller.js");
 
 const app = express();
@@ -24,12 +23,6 @@ app.get("/css", (req, res) => {
 app.get("/js", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/main.js"));
 });
-
-// const port = process.env.PORT || 5432;
-
-// app.listen(SERVER_PORT, () => {
-//   console.log(`Listening on port ${SERVER_PORT}`);
-// });
 
 const port = process.env.PORT || 5432;
 app.listen(port, () => console.log(`Listening on port ${port}`));

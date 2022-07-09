@@ -31,7 +31,7 @@ module.exports = {
       ORDER BY user_log_id DESC LIMIT 5;`
     ).then((dbRes) => {
       console.log(dbRes)
-      res.status(200).send(dbRes)
+      res.status(200).send(dbRes[0])
     })
   }
 };

@@ -2,32 +2,43 @@ let milesInputForm = document.getElementById("milesInputForm");
 let milesInput = document.getElementById("milesInput");
 const date = new Date();
 
+//Get the 5 most recent logs----------------------------------------
+
 const getRecentLogs = () => {
   axios
     .get("/api/recentLogs")
     .then((res) => {
-      console.log(res.data);
+      res.data.forEach((e, i, a) => {
+        let milesLi = document.createElement("p");
+        milesLi.textContent = a[i].miles;
+        document.getElementById("tripList").appendChild(milesLi);
+
+        let dateLi = document.createElement("p");
+        dateLi.textContent = a[i].date;
+        document.getElementById("dateList").appendChild(dateLi);
+      });
+      res.status(200).send(res.data);
     })
     .catch((err) => {
       console.log(err);
     });
 };
+getRecentLogs();
 
-// const getRecentLogs = () => {
-//   axios.get('/api/recentLogs')
-//       .then(({data: {date, miles}}) => {
-//           console.log(date)
-//           console.log(miles)
-//       })
-// }
+//Send body to api----------------------
 
 function newLog(body) {
-  console.log("new log", body);
-  axios.post("/api/log", body).then((res) => {
-    getRecentLogs();
-    console.log("this is body", res.data);
-  });
+  axios
+    .post("/api/log", body)
+    .then((res) => {
+      getRecentLogs();
+    })
+    .then((res) => {
+      res.status(200);
+    });
 }
+
+//Create the object body for the input------------------------
 
 function inputFormHandler(event) {
   event.preventDefault();
@@ -36,7 +47,6 @@ function inputFormHandler(event) {
   let currentDate = `${
     date.getMonth() + 1
   }-${date.getDate()}-${date.getFullYear()}`;
-  // console.log(currentDate);
 
   let body = {
     date: currentDate,
@@ -47,5 +57,4 @@ function inputFormHandler(event) {
   milesInput.value = "";
 }
 
-getRecentLogs
 milesInputForm.addEventListener("submit", inputFormHandler);
