@@ -15,23 +15,43 @@ const sequelize = new Sequelize(DATABASE_URL, {
 module.exports = {
   createLog: (req, res) => {
     // console.log('module exports', req.body)
-    const { date, miles } = req.body
+    const { date, miles } = req.body;
 
     // console.log(date)
     // console.log(miles)
-    
+
     sequelize.query(`
     INSERT INTO user_log (date, miles)
     VALUES ('${date}', '${miles}')
     `);
   },
-  recentLogs: (req,res) => {
-    sequelize.query(
-      `SELECT * FROM user_log
+  recentLogs: (req, res) => {
+    sequelize
+      .query(
+        `SELECT * FROM user_log
       ORDER BY user_log_id DESC LIMIT 5;`
-    ).then((dbRes) => {
-      console.log(dbRes)
-      res.status(200).send(dbRes[0])
-    })
+      )
+      .then((dbRes) => {
+        console.log(dbRes);
+        res.status(200).send(dbRes[0]);
+      });
+  },
+  history: (req, res) => {
+    sequelize
+      .query(
+        `SELECT * FROM user_log
+      ORDER BY user_log_id DESC;`
+      )
+      .then((dbRes) => {
+        console.log(dbRes);
+        res.status(200).send(dbRes[0]);
+      });
+  },
+  deleteTrip: (req, res) => {
+    const id = +req.params.id;
+    sequelize.query(`
+   DELETE FROM user_log
+   WHERE user_log_id = ${id}
+   `);
   }
 };
