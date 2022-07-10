@@ -57,9 +57,22 @@ form h2 {
   margin-top: 10px;
 }
 
+#oilChangeMileageSubmit {
+  background-color: black;
+  color: #ffff;
+  border-radius: 10px;
+  padding: 0px 10px;
+  width: 150px;
+  margin-top: 10px;
+}
+
 #milesInput {
   text-align: center;
 }
+#oilChangeInput {
+  text-align: center;
+}
+
 #formDiv {
   background-color: #690a0c;
   display: flex;
@@ -73,6 +86,11 @@ form h2 {
 }
 
 #milesInputForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#oilChangeInputForm {
   display: flex;
   flex-direction: column;
   align-items: center;

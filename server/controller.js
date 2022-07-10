@@ -53,5 +53,11 @@ module.exports = {
    DELETE FROM user_log
    WHERE user_log_id = ${id}
    `);
+  },
+  createOilChangeLog: (req,res) => {
+
+  },
+  oilChangeHistory: (req,res) => {
+    
   }
 };

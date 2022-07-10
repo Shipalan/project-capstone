@@ -1,9 +1,13 @@
 let tripList = document.getElementById("tripList");
 let dateList = document.getElementById("dateList");
-let historyDateList = document.getElementById("historyDateList")
-let historyTripList = document.getElementById("historyTripList")
+let removeLogById = document.querySelector(".log");
+let historyDateList = document.getElementById("historyDateList");
+let historyTripList = document.getElementById("historyTripList");
 let milesInputForm = document.getElementById("milesInputForm");
+let oilChangeInputForm = document.getElementById("oilChangeInputForm");
 let milesInput = document.getElementById("milesInput");
+let oilChangeInput = document.getElementById("oilChangeInput");
+
 const date = new Date();
 
 //Get full history----------------------------------------------------
@@ -12,15 +16,20 @@ const getHistory = () => {
   axios
     .get("/api/history")
     .then((res) => {
-      let data = res.data
+      let data = res.data;
       data.forEach((e, i, a) => {
         let milesLi = document.createElement("p");
+        milesLi.setAttribute("id", "milesP");
         let dateLi = document.createElement("p");
+        dateLi.setAttribute("id", "dateP");
         milesLi.textContent = a[i].miles;
         historyTripList.appendChild(milesLi);
 
         dateLi.textContent = a[i].date;
         historyDateList.appendChild(dateLi);
+
+        milesLi.addEventListener("click", deleteTrip);
+        dateLi.addEventListener("click", deleteTrip);
       });
       res.send(res.data);
     })
@@ -91,14 +100,81 @@ function inputFormHandler(event) {
 //Delete function---------------------------------------------------
 
 const deleteTrip = (event) => {
-  console.log(event.target.id)
-  axios.delete("/api/deleteTrip/" + event.target.id)
-  .then(function (res) {
-    res.status(200)
-  })
-  .catch(function (err) {
-    res.status(400).send(err)
-  })
+  console.log(event.target.id);
+  axios
+    .delete("/api/deleteTrip/" + event.target.id)
+    .then(function (res) {
+      res.status(200);
+    })
+    .catch(function (err) {
+      res.status(400).send(err);
+    });
+  event.target.remove();
+};
+
+//Get Oil change history--------------------------------------------
+
+const getOilChangeHistory = () => {
+  axios
+    .get("/api/oilChangeHistory")
+    .then((res) => {
+      let data = res.data;
+      data.forEach((e, i, a) => {
+        let milesLi = document.createElement("p");
+        // milesLi.setAttribute("id", "milesP")
+        let dateLi = document.createElement("p");
+        // dateLi.setAttribute("id", "dateP")
+        milesLi.textContent = a[i].miles;
+        oilChangeDateList.appendChild(milesLi);
+
+        dateLi.textContent = a[i].date;
+        oilChangeDateList.appendChild(dateLi);
+
+        // milesLi.addEventListener("click", deleteTrip)
+        // dateLi.addEventListener("click", deleteTrip)
+      });
+      res.send(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+getOilChangeHistory();
+
+//Submit Oil change------------------------------------------------------
+function oilChangeInputFormHandler(event) {
+  // event.preventDefault();
+  console.log(oilChangeInput.value);
+
+  const date = new Date();
+  let currentDate = `${
+    date.getMonth() + 1
+  }-${date.getDate()}-${date.getFullYear()}`;
+
+  let body = {
+    date: currentDate,
+    changed_at: `${oilChangeInput.value} miles`,
+  };
+
+  newLog(body);
+  oilChangeInput.value = "";
 }
 
+//Oil changed log submit----------------------------------------------------
+function newOilChangeLog(body) {
+  console.log(body);
+  axios
+    .post("/api/oilChangeLog", body)
+    .then((res) => {
+      res.status(200);
+      getRecentLogs();
+    })
+    .catch((err) => {
+      err.status(400);
+    });
+}
+
+
 milesInputForm.addEventListener("submit", inputFormHandler);
+oilChangeInputForm.addEventListener("submit", oilChangeInputFormHandler);
