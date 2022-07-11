@@ -54,7 +54,7 @@ const getRecentLogs = () => {
         dateLi.textContent = a[i].date;
         dateList.appendChild(dateLi);
       });
-      res.status(200).send(res.data);
+      res.send(res.data);
     })
     .catch((err) => {
       console.log(err);
