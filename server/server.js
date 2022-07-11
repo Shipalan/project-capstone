@@ -38,6 +38,10 @@ app.get("/js", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/main.js"));
 });
 
+app.get("/ocjs", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/oilChangeHistory.js"));
+});
+
 //Connection Port --------------------------------------------
 
 const port = process.env.PORT || 5432;

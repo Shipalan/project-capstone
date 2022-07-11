@@ -84,6 +84,17 @@ form h2 {
   box-sizing: border-box;
   max-width: 400px;
 }
+#oilChangeInputForm {
+  background-color: #690a0c;
+  display: flex;
+  justify-content: center;
+  width: 30vw;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 60px;
+  box-sizing: border-box;
+  max-width: 400px;
+}
 
 #milesInputForm {
   display: flex;
@@ -128,9 +139,6 @@ form h2 {
   margin: 10px 0;
 }
 
-#list ul {
-  margin: 0;
-  padding: 0;
-}
+
 
 /* history.css ------------------------------------------------ */

@@ -54,10 +54,27 @@ module.exports = {
    WHERE user_log_id = ${id}
    `);
   },
-  createOilChangeLog: (req,res) => {
+  createOilChangeLog: (req, res) => {
+    // console.log('module exports', req.body)
+    const { date, changed_at } = req.body;
 
+    // console.log(date);
+    // console.log(changed_at);
+
+    sequelize.query(`
+      INSERT INTO oilChange (date, changed_at)
+      VALUES ('${date}', '${changed_at}')
+      `);
   },
-  oilChangeHistory: (req,res) => {
-    
-  }
+  oilChangeHistory: (req, res) => {
+    sequelize
+      .query(
+        `SELECT * FROM oilchange
+      ORDER BY oil_change_id DESC;`
+      )
+      .then((dbRes) => {
+        console.log(dbRes);
+        res.status(200).send(dbRes[0]);
+      });
+  },
 };
